@@ -27,7 +27,7 @@ public class HomeController {
     }
 
     @PostMapping
-    public ResponseEntity<?> create(Home home, @PathVariable("uid") Long uid) {
+    public ResponseEntity<?> create(@RequestBody Home home, @PathVariable("uid") Long uid) {
         home.setMasterId(uid);
         final Home createdHome = homeService.createHome(home);
         return new ResponseEntity<>(createdHome, HttpStatus.CREATED);
@@ -42,7 +42,7 @@ public class HomeController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@PathVariable("id") Long id, Home home) {
+    public ResponseEntity<?> update(@PathVariable("id") Long id, @RequestBody Home home) {
         final Home updatedHome = homeService.updateHome(home, id);
         return new ResponseEntity<>(updatedHome, HttpStatus.OK);
     }
