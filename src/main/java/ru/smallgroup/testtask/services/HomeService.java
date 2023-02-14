@@ -7,11 +7,9 @@ import java.util.Optional;
 
 public interface HomeService {
 
-    Home createHome(User owner);
+    Home createHome(Long masterId, String address);
     Optional<Home> getHomeById(Long id);
     Home updateHome(Home home);
-    boolean deleteHome(Home home);
-
-    Home addResident(User resident);
-
+    void deleteHome(Home home);
+    Home addResident(Long homeId, User resident);
 }

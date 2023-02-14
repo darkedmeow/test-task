@@ -9,6 +9,6 @@ public interface UserService {
     User createUser(String name, String password, int age);
     Optional<User> getUserById(Long id);
     User updateUser(User user);
-    boolean deleteUser(User user);
+    void deleteUser(User user);
 
 }
