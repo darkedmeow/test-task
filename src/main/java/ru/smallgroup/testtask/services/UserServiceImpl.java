@@ -1,11 +1,13 @@
 package ru.smallgroup.testtask.services;
 
+import org.springframework.stereotype.Service;
 import ru.smallgroup.testtask.models.User;
 import ru.smallgroup.testtask.repositories.UserRepository;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;

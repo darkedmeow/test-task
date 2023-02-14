@@ -1,5 +1,6 @@
 package ru.smallgroup.testtask.services;
 
+import org.springframework.stereotype.Service;
 import ru.smallgroup.testtask.models.Home;
 import ru.smallgroup.testtask.models.User;
 import ru.smallgroup.testtask.repositories.HomeRepository;
@@ -7,6 +8,7 @@ import ru.smallgroup.testtask.repositories.HomeRepository;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class HomeServiceImpl implements HomeService {
 
     private final HomeRepository homeRepository;
