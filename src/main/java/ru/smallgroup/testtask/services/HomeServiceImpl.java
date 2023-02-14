@@ -4,6 +4,7 @@ import ru.smallgroup.testtask.models.Home;
 import ru.smallgroup.testtask.models.User;
 import ru.smallgroup.testtask.repositories.HomeRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 public class HomeServiceImpl implements HomeService {
@@ -15,11 +16,7 @@ public class HomeServiceImpl implements HomeService {
     }
 
     @Override
-    public Home createHome(Long masterId, String address) {
-        Home home = new Home();
-        home.setAddress(address);
-        home.setMasterId(masterId);
-
+    public Home createHome(Home home) {
         return homeRepository.save(home);
     }
 
@@ -29,8 +26,18 @@ public class HomeServiceImpl implements HomeService {
     }
 
     @Override
-    public Home updateHome(Home home) {
-        return homeRepository.save(home);
+    public List<Home> getAll() {
+        return (List<Home>) homeRepository.findAll();
+    }
+
+    @Override
+    public Home updateHome(Home home, Long homeId) {
+        var updatedHome = homeRepository.findById(homeId);
+        if (updatedHome.isEmpty()) {
+            throw new RuntimeException();
+        }
+        updatedHome.get().setAddress(home.getAddress());
+        return homeRepository.save(updatedHome.get());
     }
 
     @Override

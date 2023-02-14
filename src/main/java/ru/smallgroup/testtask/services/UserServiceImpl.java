@@ -3,6 +3,7 @@ package ru.smallgroup.testtask.services;
 import ru.smallgroup.testtask.models.User;
 import ru.smallgroup.testtask.repositories.UserRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 public class UserServiceImpl implements UserService {
@@ -14,12 +15,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User createUser(String name, String password, int age) {
-        User user = new User();
-        user.setName(name);
-        user.setAge(age);
-        user.setPassword(password);
-
+    public User createUser(User user) {
         return userRepository.save(user);
     }
 
@@ -29,8 +25,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User updateUser(User user) {
-        return userRepository.save(user);
+    public List<User> getAll() {
+        return (List<User>) userRepository.findAll();
+    }
+
+    @Override
+    public User updateUser(User user, Long userId) {
+        var updatedUser = userRepository.findById(userId);
+        if (updatedUser.isEmpty()) {
+            throw new RuntimeException();
+        }
+        updatedUser.get().setName(user.getName());
+        updatedUser.get().setAge(user.getAge());
+        updatedUser.get().setPassword(user.getPassword());
+        return userRepository.save(updatedUser.get());
     }
 
     @Override
