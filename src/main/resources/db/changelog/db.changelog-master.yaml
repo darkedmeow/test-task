@@ -1,0 +1,70 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: T-1
+      author: me
+      changes:
+        - createTable:
+            tableName: USERS
+            columns:
+              - column:
+                  name: id
+                  type: integer
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: user-pk
+                    nullable: false
+              - column:
+                  name: username
+                  type: varchar(100)
+              - column:
+                  name: age
+                  type: integer
+              - column:
+                  name: password
+                  type: varchar(100)
+
+        - createTable:
+            tableName: HOMES
+            columns:
+              - column:
+                  name: id
+                  type: integer
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: home_pk
+                    nullable: false
+              - column:
+                  name: address
+                  type: varchar(100)
+              - column:
+                  name: master_id
+                  type: integer
+
+        - addColumn:
+            tableName: USERS
+            columns:
+              - column:
+                  name: home_id
+                  type: integer
+        - addForeignKeyConstraint:
+            baseTableName: USERS
+            baseColumnNames: home_id
+            referencedTableName: HOMES
+            referencedColumnNames: id
+            constraintName: user_home_fk
+
+        - insert:
+            tableName: USERS
+            columns:
+              - column:
+                  name: username
+                  value: Serega
+              - column:
+                  name: age
+                  value: 10
+              - column:
+                  name: password
+                  value: catvskid
