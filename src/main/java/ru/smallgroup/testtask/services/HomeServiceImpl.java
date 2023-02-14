@@ -41,8 +41,8 @@ public class HomeServiceImpl implements HomeService {
     }
 
     @Override
-    public void deleteHome(Home home) {
-        homeRepository.delete(home);
+    public void deleteHome(Long homeId) {
+        homeRepository.deleteById(homeId);
     }
 
     @Override
