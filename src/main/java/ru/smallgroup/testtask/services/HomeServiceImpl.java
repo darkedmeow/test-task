@@ -24,6 +24,10 @@ public class HomeServiceImpl implements HomeService {
 
     @Override
     public Home createHome(Home home) {
+        var owner = userRepository.findById(home.getOwnerId());
+        if (owner.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
         return homeRepository.save(home);
     }
 
