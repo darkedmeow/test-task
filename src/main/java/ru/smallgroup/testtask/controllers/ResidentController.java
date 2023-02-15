@@ -23,7 +23,7 @@ public class ResidentController {
 
     @PostMapping
     public ResponseEntity<?> addResident(@PathVariable("hid") Long homeId, @RequestBody User user) {
-        homeService.addResident(homeId, user);
+        homeService.addResident(homeId, user.getId());
         return ResponseEntity.ok().build();
     }
 }

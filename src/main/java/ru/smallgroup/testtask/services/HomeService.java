@@ -13,5 +13,5 @@ public interface HomeService {
     List<Home> getAll();
     Home updateHome(Home home, Long homeId);
     void deleteHome(Long homeId);
-    Home addResident(Long homeId, User resident);
+    Home addResident(Long homeId, Long residentId);
 }
