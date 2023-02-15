@@ -30,6 +30,7 @@ public class HomeController {
     public ResponseEntity<?> create(@RequestBody Home home, @PathVariable("uid") Long uid) {
         home.setOwnerId(uid);
         final Home createdHome = homeService.createHome(home);
+        homeService.addResident(home.getId(), uid);
         return new ResponseEntity<>(createdHome, HttpStatus.CREATED);
     }
 
