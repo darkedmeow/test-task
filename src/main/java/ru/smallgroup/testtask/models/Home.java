@@ -17,6 +17,7 @@ public class Home {
 
     private String address;
 
+    @Column(name = "master_id")
     private Long ownerId;
 
     @OneToMany
