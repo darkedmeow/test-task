@@ -28,7 +28,7 @@ public class HomeController {
 
     @PostMapping
     public ResponseEntity<?> create(@RequestBody Home home, @PathVariable("uid") Long uid) {
-        home.setMasterId(uid);
+        home.setOwnerId(uid);
         final Home createdHome = homeService.createHome(home);
         return new ResponseEntity<>(createdHome, HttpStatus.CREATED);
     }

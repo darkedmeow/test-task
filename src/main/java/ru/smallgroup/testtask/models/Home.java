@@ -17,7 +17,7 @@ public class Home {
 
     private String address;
 
-    private Long masterId;
+    private Long ownerId;
 
     @OneToMany
     @JoinColumn(name = "home_id")
